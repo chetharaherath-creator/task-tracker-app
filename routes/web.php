@@ -32,12 +32,12 @@ Route::middleware([
     Route::get('/tasks/{task}/edit', [\App\Http\Controllers\TaskController::class, 'edit'])->name('tasks.edit');
     Route::put('/tasks/{task}', [\App\Http\Controllers\TaskController::class, 'update'])->name('tasks.update');
 
-    // Bulletproof file serving route to bypass cloud symlink issues
-    Route::get('/storage/{path}', function ($path) {
+    // Bulletproof file serving route to bypass cloud symlink issues completely
+    Route::get('/file/{path}', function ($path) {
         $fullPath = storage_path('app/public/' . $path);
         if (!file_exists($fullPath)) {
             abort(404);
         }
         return response()->file($fullPath);
-    })->where('path', '.*')->name('storage.serve');
+    })->where('path', '.*')->name('file.serve');
 });

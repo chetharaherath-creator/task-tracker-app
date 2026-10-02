@@ -59,7 +59,7 @@
                                     
                                     <!-- Image Container (Constrained Size) -->
                                     <div class="p-6 flex justify-center bg-[#FDFDFC]">
-                                        <img src="/storage/{{ $task->attachment_path }}" alt="Attachment" class="max-w-full max-h-[60vh] object-contain rounded-lg shadow-sm border border-[#B3C9D6]/20">
+                                        <img src="/file/{{ $task->attachment_path }}" alt="Attachment" class="max-w-full max-h-[60vh] object-contain rounded-lg shadow-sm border border-[#B3C9D6]/20">
                                     </div>
                                     
                                 </div>
