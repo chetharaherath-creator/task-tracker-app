@@ -19,7 +19,23 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/insights', function () {
-        return view('insights');
+        $categories = ['Personal', 'Work', 'Study', 'Health'];
+        $stats = [];
+        
+        foreach ($categories as $cat) {
+            $total = auth()->user()->tasks()->where('category', $cat)->count();
+            $completed = auth()->user()->tasks()->where('category', $cat)->where('is_completed', true)->count();
+            $percentage = $total > 0 ? round(($completed / $total) * 100) : 0;
+            
+            $stats[] = [
+                'name' => $cat,
+                'total' => $total,
+                'completed' => $completed,
+                'percentage' => $percentage
+            ];
+        }
+        
+        return view('insights', compact('stats'));
     })->name('insights');
 
     Route::delete('/user/profile-photo', function () {
