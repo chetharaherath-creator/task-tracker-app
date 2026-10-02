@@ -31,18 +31,7 @@
                            class="w-full bg-white border border-[#B3C9D6]/40 rounded-lg shadow-sm focus:border-[#697C70] focus:ring-[#697C70] px-4 py-2.5 text-[#2D3536]" placeholder="••••••••">
                 </div>
 
-                <div class="flex items-center justify-between mt-4">
-                    <label for="remember_me" class="flex items-center">
-                        <input type="checkbox" id="remember_me" name="remember" class="w-4 h-4 text-[#697C70] border-[#B3C9D6]/40 rounded focus:ring-[#697C70]">
-                        <span class="ms-2 text-sm text-[#2D3536]/60">Remember me</span>
-                    </label>
 
-                    @if (Route::has('password.request'))
-                        <a class="text-sm font-medium text-[#697C70] hover:text-[#2D3536] transition" href="{{ route('password.request') }}">
-                            Forgot password?
-                        </a>
-                    @endif
-                </div>
 
                 <button type="submit" class="w-full py-2.5 mt-2 text-white bg-[#2D3536] rounded-lg hover:bg-[#1F2526] transition shadow-sm font-medium text-sm">
                     Sign in
