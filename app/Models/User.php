@@ -75,4 +75,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    /**
+     * Get the URL to the user's profile photo.
+     * Override to use the custom file serving route.
+     *
+     * @return string
+     */
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->profile_photo_path) {
+            return url('/file/' . $this->profile_photo_path);
+        }
+
+        return $this->defaultProfilePhotoUrl();
+    }
 }
