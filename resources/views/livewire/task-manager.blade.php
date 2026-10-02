@@ -1,12 +1,15 @@
 @php
     try {
         // 1. Automatically detect user's location based on their Internet IP
-        $locationResponse = \Illuminate\Support\Facades\Http::timeout(3)->get('http://ip-api.com/json/');
+        $userIp = request()->ip();
+        $ipQuery = ($userIp === '127.0.0.1' || $userIp === '::1' || $userIp === 'localhost') ? '' : $userIp;
+        
+        $locationResponse = \Illuminate\Support\Facades\Http::timeout(3)->get("http://ip-api.com/json/{$ipQuery}");
         
         if ($locationResponse->successful() && $locationResponse->json('status') === 'success') {
             $lat = $locationResponse->json('lat');
             $lon = $locationResponse->json('lon');
-            $city = $locationResponse->json('city'); // Dynamically gets 'Ja-Ela', 'Kandy', etc.
+            $city = $locationResponse->json('city'); // Dynamically gets the city based on the client IP
             
             // 2. Fetch current weather for that exact location
             $weatherResponse = \Illuminate\Support\Facades\Http::timeout(3)
