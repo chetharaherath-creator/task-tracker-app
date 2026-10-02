@@ -43,6 +43,15 @@ Route::middleware([
         return back()->with('status', 'profile-photo-deleted');
     })->name('current-user-photo.destroy');
 
+    Route::delete('/user/account', function (\Illuminate\Http\Request $request) {
+        $user = auth()->user();
+        auth()->logout();
+        $user->delete();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    })->name('user.account.destroy');
+
     Route::get('/tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');
     Route::post('/tasks', [\App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
     Route::get('/tasks/{task}/edit', [\App\Http\Controllers\TaskController::class, 'edit'])->name('tasks.edit');

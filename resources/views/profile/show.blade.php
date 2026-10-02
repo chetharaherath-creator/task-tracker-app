@@ -157,11 +157,42 @@
                     </div>
                 </form>
             </div>
+
+            <!-- Delete Account Card -->
+            <div class="bg-white rounded-xl shadow-sm border border-red-200 overflow-hidden mt-8">
+                <div class="p-8 md:flex gap-12">
+                    <!-- Left side: Text -->
+                    <div class="md:w-1/3">
+                        <div class="flex items-center gap-2 font-semibold mb-2 text-lg text-red-600">
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            Delete Account
+                        </div>
+                        <p class="text-[#2D3536]/60 text-sm">Permanently delete your account and all of its data.</p>
+                    </div>
+
+                    <!-- Right side: Content -->
+                    <div class="md:w-2/3 space-y-5 mt-6 md:mt-0">
+                        <p class="text-sm text-[#2D3536]/80">
+                            Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.
+                        </p>
+                        
+                        <div class="pt-2">
+                            <button type="button" onclick="if(confirm('Are you absolutely sure you want to delete your account? This action cannot be undone.')) document.getElementById('delete-account-form').submit()" class="px-5 py-2.5 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 transition shadow-sm font-medium">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Hidden Form for Deleting Photo -->
     <form id="delete-photo-form" method="POST" action="{{ route('current-user-photo.destroy') }}" class="hidden">
+        @csrf
+        @method('DELETE')
+    </form>
+    
+    <!-- Hidden Form for Deleting Account -->
+    <form id="delete-account-form" method="POST" action="{{ route('user.account.destroy') }}" class="hidden">
         @csrf
         @method('DELETE')
     </form>
