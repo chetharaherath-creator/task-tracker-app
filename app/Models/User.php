@@ -85,7 +85,7 @@ class User extends Authenticatable
     public function getProfilePhotoUrlAttribute()
     {
         if ($this->profile_photo_path) {
-            return url('/file/' . $this->profile_photo_path);
+            return '/file/' . $this->profile_photo_path;
         }
 
         return $this->defaultProfilePhotoUrl();
