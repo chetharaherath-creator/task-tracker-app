@@ -47,7 +47,7 @@
                             
                             <div class="relative mb-4">
                                 @if(auth()->user()->profile_photo_path)
-                                    <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" class="w-32 h-32 rounded-full object-cover border-4 border-[#F2EFE2]">
+                                    <img src="{{ auth()->user()->profile_photo_url }}" class="w-32 h-32 rounded-full object-cover border-4 border-[#F2EFE2]">
                                 @else
                                     <div class="w-32 h-32 rounded-full bg-[#697C70] text-white flex items-center justify-center font-bold text-4xl border-4 border-[#F2EFE2]">
                                         {{ substr(auth()->user()->name, 0, 1) }}

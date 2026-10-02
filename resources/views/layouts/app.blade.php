@@ -46,7 +46,7 @@
                 
                 <div class="flex items-center gap-3 pt-4 border-t border-[#B3C9D6]/30">
                     @if(auth()->user()->profile_photo_path)
-                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" class="w-9 h-9 rounded-full object-cover shadow-sm border border-[#B3C9D6]/40">
+                        <img src="{{ auth()->user()->profile_photo_url }}" class="w-9 h-9 rounded-full object-cover shadow-sm border border-[#B3C9D6]/40">
                     @else
                         <div class="w-9 h-9 rounded-full bg-[#697C70] text-white flex items-center justify-center font-bold text-sm shadow-sm">
                             {{ substr(auth()->user()->name, 0, 1) }}
