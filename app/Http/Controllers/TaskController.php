@@ -40,7 +40,7 @@ class TaskController extends Controller
             'attachment_path' => $path,
         ]);
         
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Task added successfully!');
     }
 
     /**
@@ -76,6 +76,6 @@ class TaskController extends Controller
             'due_date' => $request->due_date ?? now(),
         ]);
         
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Task updated successfully!');
     }
 }

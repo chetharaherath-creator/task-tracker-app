@@ -33,6 +33,18 @@
 
 <div class="font-sans text-[#2D3536] max-w-5xl">
     
+    @if (session()->has('success'))
+        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="mb-6 bg-[#697C70]/10 border border-[#697C70]/30 text-[#697C70] px-4 py-3 rounded-lg flex justify-between items-center shadow-sm" x-transition>
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span class="font-medium text-sm">{{ session('success') }}</span>
+            </div>
+            <button @click="show = false" class="text-[#697C70]/60 hover:text-[#697C70]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    @endif
+
     <div class="mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
         <div>
             <h1 class="text-2xl font-bold tracking-tight text-[#2D3536]">Good morning, {{ auth()->user()->name }}</h1>
