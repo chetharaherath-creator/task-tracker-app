@@ -158,6 +158,13 @@
                 </form>
             </div>
 
+            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                <!-- API Tokens Card (Jetstream Default) -->
+                <div class="mt-8">
+                    @livewire('api.api-token-manager')
+                </div>
+            @endif
+
             <!-- Delete Account Card -->
             <div class="bg-white rounded-xl shadow-sm border border-red-200 overflow-hidden mt-8">
                 <div class="p-8 md:flex gap-12">
