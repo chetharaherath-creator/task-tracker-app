@@ -23,6 +23,12 @@
 
 <div class="flex flex-col sm:flex-row sm:items-center justify-between p-6 gap-4 sm:gap-0 group transition {{ $task->is_completed ? 'opacity-50' : '' }} {{ $catColor }} hover:brightness-95">
     <div class="flex items-start gap-4">
+        <!-- Checkbox Button -->
+        <button wire:click="toggleComplete({{ $task->id }})" class="mt-0.5 flex-shrink-0 w-5 h-5 rounded border border-[#B3C9D6] flex items-center justify-center transition-colors {{ $task->is_completed ? 'bg-[#697C70] border-[#697C70]' : 'bg-white hover:border-[#697C70]' }}">
+            @if($task->is_completed)
+                <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            @endif
+        </button>
         <div>
             <h4 class="font-medium text-sm {{ $task->is_completed ? 'line-through text-[#2D3536]/40' : 'text-[#2D3536]' }}">{{ $task->title }}</h4>
             <div class="flex flex-col gap-1 mt-1">
