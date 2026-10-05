@@ -45,7 +45,7 @@ Route::middleware([
 
     Route::delete('/user/account', function (\Illuminate\Http\Request $request) {
         $user = auth()->user();
-        auth()->logout();
+        auth('web')->logout();
         $user->delete();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
